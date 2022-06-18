@@ -6,6 +6,7 @@ set(SOURCE_FILES
         Facing
         Coordinate
         Robot
+        Board
 )
 
 enable_testing()
