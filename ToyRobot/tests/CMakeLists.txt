@@ -1,0 +1,7 @@
+function(unit_test testname)
+    add_executable(${testname} ${testname})
+    target_link_libraries(${testname} ToyRobot)
+    add_test(${testname} ${testname})
+endfunction()
+
+unit_test(testfacing)
