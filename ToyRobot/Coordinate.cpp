@@ -1,5 +1,7 @@
 #include "Coordinate.h"
 
+#include <sstream>
+
 Coordinate::Coordinate(int x, int y)
     : _x_axis(x)
     , _y_axis(y)
@@ -34,4 +36,12 @@ Coordinate Coordinate::next(const Facing & direction) const
     }
 
     return Coordinate(x, y);
+}
+
+std::string Coordinate::toString() const
+{
+    std::stringstream ss;
+    ss << _x_axis << "," << _y_axis;
+
+    return ss.str();
 }

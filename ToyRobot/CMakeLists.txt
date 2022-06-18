@@ -7,10 +7,13 @@ set(SOURCE_FILES
         Coordinate
         Robot
         Board
+        ToyRobot
 )
 
 enable_testing()
 add_subdirectory(tests)
 
 add_library(ToyRobot SHARED ${SOURCE_FILES})
-target_include_directories(ToyRobot PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_include_directories(ToyRobot PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
+)

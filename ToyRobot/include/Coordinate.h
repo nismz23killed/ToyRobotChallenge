@@ -3,6 +3,8 @@
 
 #include "Facing.h"
 
+#include <string>
+
 class Coordinate
 {
 private:
@@ -18,6 +20,8 @@ public:
     int getY() const;
 
     Coordinate next(const Facing & direction) const;
+
+    std::string toString() const;
 };
 
 #endif // __COORDINATE_H__
