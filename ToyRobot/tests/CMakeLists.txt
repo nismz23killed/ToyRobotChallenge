@@ -5,3 +5,4 @@ function(unit_test testname)
 endfunction()
 
 unit_test(testfacing)
+unit_test(testcoordinate)

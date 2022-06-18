@@ -4,6 +4,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(SOURCE_FILES
         Facing
+        Coordinate
 )
 
 enable_testing()
