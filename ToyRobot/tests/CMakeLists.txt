@@ -6,3 +6,4 @@ endfunction()
 
 unit_test(testfacing)
 unit_test(testcoordinate)
+unit_test(testrobot)
