@@ -40,6 +40,7 @@ Example Input and Output:
 ### Building the code
 First, clone the repo assuming git, cmake, and c++ compiler(C++17) are already installed in your environment.
 Issue the command in the console:
+
     git clone https://github.com/nismz23killed/ToyRobotChallenge.git
     cd ToyRobotChallenge
     cmake -B<folder where to place the build> ToyRobot
