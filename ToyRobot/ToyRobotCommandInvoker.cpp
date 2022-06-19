@@ -76,7 +76,6 @@ void ToyRobotCommandInvoker::registerCommands()
     regexCmds.insert(pair(
         "^\\s*(REPORT)\\s*$",
         [&] (const smatch & match) {
-            cout << "HELLO" << endl;
             return _toyRobot.report();
         }
     ));
