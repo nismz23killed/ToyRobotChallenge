@@ -1,11 +1,11 @@
-#include "Board.h"
+#include "Board2D.h"
 
 #include <cassert>
 
 
 static void testBoard()
 {
-    Board board(5, 20);
+    Board2D board(5, 20);
 
     assert(board.getLength() == 5);
     assert(board.getHeight() == 20);

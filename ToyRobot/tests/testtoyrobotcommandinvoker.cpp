@@ -1,11 +1,12 @@
 #include "ToyRobot.h"
 #include "ToyRobotCommandInvoker.h"
+#include "Board2D.h"
 
 #include <cassert>
 
 static void testToyRobotCommands()
 {
-    ToyRobot toyRobot(new Board(5,5));
+    ToyRobot toyRobot(new Board2D(5,5));
     ToyRobotCommandInvoker commander(toyRobot);
 
     commander.processCommand("PLACE 0,0,NORTH");

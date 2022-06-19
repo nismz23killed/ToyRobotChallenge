@@ -1,14 +1,14 @@
-#include "Board.h"
+#include "Board2D.h"
 
 
-Board::Board(unsigned int length, unsigned int height)
+Board2D::Board2D(unsigned int length, unsigned int height)
     : _length(length)
     , _height(height)
 {
 }
 
 
-bool Board::isPositionWithinBounds(const Coordinate & coord) const
+bool Board2D::isPositionWithinBounds(const Coordinate & coord) const
 {
     return (coord.getX() >= 0
             && coord.getY() >= 0
@@ -16,12 +16,12 @@ bool Board::isPositionWithinBounds(const Coordinate & coord) const
             && coord.getY() < _height);
 }
 
-unsigned int Board::getLength() const
+unsigned int Board2D::getLength() const
 {
     return _length;
 }
 
-unsigned int Board::getHeight() const
+unsigned int Board2D::getHeight() const
 {
     return _height;
 }

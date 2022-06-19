@@ -1,13 +1,14 @@
 #include<ToyRobot.h>
 #include<Robot.h>
 #include<ToyRobotCommandInvoker.h>
+#include<Board2D.h>
 
 #include <string>
 #include <iostream>
 
 int main(int  /* argc */, char ** /* argv */)
 {
-    ToyRobot toyRobot(new Board(5, 5));
+    ToyRobot toyRobot(new Board2D(5, 5));
     ToyRobotCommandInvoker commander(toyRobot);
 
     while(true) {

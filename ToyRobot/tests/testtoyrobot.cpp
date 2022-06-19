@@ -1,5 +1,5 @@
 #include "ToyRobot.h"
-#include "Board.h"
+#include "Board2D.h"
 
 #include <cassert>
 #include <sstream>
@@ -9,7 +9,7 @@
 
 static void testPlaceRobot()
 {
-    ToyRobot toyRobot(new Board(10, 20));
+    ToyRobot toyRobot(new Board2D(10, 20));
     assert(!toyRobot.place(Coordinate(-1, 5), Facing::EAST));
     assert(!toyRobot.place(Coordinate(1000, -5), Facing::WEST));
     assert(!toyRobot.place(Coordinate(10, 20), Facing::NORTH));
@@ -22,7 +22,7 @@ static void testPlaceRobot()
 
 static void testTurnRobotLeft()
 {
-    ToyRobot toyRobot(new Board(10, 20));
+    ToyRobot toyRobot(new Board2D(10, 20));
 
     assert(!toyRobot.left());
     assert(toyRobot.report() == "Robot hasn't been placed yet!");
@@ -45,7 +45,7 @@ static void testTurnRobotLeft()
 
 static void testTurnRobotRight()
 {
-    ToyRobot toyRobot(new Board(10, 20));
+    ToyRobot toyRobot(new Board2D(10, 20));
 
     assert(!toyRobot.right());
     assert(toyRobot.report() == "Robot hasn't been placed yet!");
@@ -69,7 +69,7 @@ static void testTurnRobotRight()
 static void testMoveRobot()
 {
     unsigned int boardSize = 5;
-    ToyRobot toyRobot(new Board(boardSize, boardSize));
+    ToyRobot toyRobot(new Board2D(boardSize, boardSize));
 
     assert(!toyRobot.move());
     assert(toyRobot.report() == "Robot hasn't been placed yet!");

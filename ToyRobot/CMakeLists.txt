@@ -6,7 +6,7 @@ set(SOURCE_FILES
         Facing
         Coordinate
         Robot
-        Board
+        Board2D
         ToyRobot
         ToyRobotCommandInvoker
 )
