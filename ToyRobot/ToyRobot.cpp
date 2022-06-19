@@ -1,6 +1,7 @@
 #include "ToyRobot.h"
 
 #include <sstream>
+#include <iostream>
 
 ToyRobot::ToyRobot(Board * board)
 {

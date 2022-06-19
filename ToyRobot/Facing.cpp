@@ -3,6 +3,7 @@
 #include <map>
 #include <stdexcept>
 #include <iostream>
+#include <string.h>
 
 static std::map<Facing::Direction, const char *> facingMap = {
     { Facing::NORTH, "NORTH" },
@@ -50,4 +51,17 @@ Facing Facing::right() const
         case EAST: return SOUTH;
         case WEST: return NORTH;
     }
+}
+
+Facing::Direction Facing::fromStr(const char * facingStr)
+{
+    if (facingStr) {
+        for (auto & it: facingMap) {
+            if (strcasecmp(facingStr, it.second) == 0) {
+                return it.first;
+            }
+        }
+    }
+
+    return NORTH; // default
 }

@@ -8,6 +8,7 @@ set(SOURCE_FILES
         Robot
         Board
         ToyRobot
+        ToyRobotCommandInvoker
 )
 
 enable_testing()

@@ -25,6 +25,8 @@ public:
     bool right();
 
     std::string report() const;
+
+    void processCommand(std::string command);
 };
 
 #endif // __TOY_ROBOT_H__

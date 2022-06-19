@@ -32,6 +32,8 @@ public:
 
     Facing left() const;
     Facing right() const;
+
+    static Direction fromStr(const char * facingStr);
 };
 
 #endif // __FACING_H__
