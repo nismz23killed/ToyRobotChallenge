@@ -5,54 +5,26 @@
 
 static void testFacingToString()
 {
-    Facing facing = Facing::NORTH;
-    assert(std::string(facing.toString()) == "NORTH");
-
-    facing = Facing::SOUTH;
-    assert(std::string(facing.toString()) == "SOUTH");
-
-    facing = Facing::EAST;
-    assert(std::string(facing.toString()) == "EAST");
-
-    facing = Facing::WEST;
-    assert(std::string(facing.toString()) == "WEST");
+    assert(std::string(FacingToStr(Facing::NORTH)) == "NORTH");
+    assert(std::string(FacingToStr(Facing::SOUTH)) == "SOUTH");
+    assert(std::string(FacingToStr(Facing::EAST)) == "EAST");
+    assert(std::string(FacingToStr(Facing::WEST)) == "WEST");
 }
 
-static void testFacingLeft()
+static void testFacingFromString()
 {
-    Facing facing = Facing::NORTH;
-    assert(facing.left() == Facing::WEST);
-    
-    facing = Facing::WEST;
-    assert(facing.left() == Facing::SOUTH);
+    assert(FacingFromStr("NORTH") == Facing::NORTH);
+    assert(FacingFromStr("SOUTH") == Facing::SOUTH);
+    assert(FacingFromStr("EAST") == Facing::EAST);
+    assert(FacingFromStr("WEST") == Facing::WEST);
 
-    facing = Facing::SOUTH;
-    assert(facing.left() == Facing::EAST);
-
-    facing = Facing::EAST;
-    assert(facing.left() == Facing::NORTH);
+    // north will be returned for invalid input
+    assert(FacingFromStr("ANYWHERE") == Facing::NORTH);
 }
-
-static void testFacingRight()
-{
-    Facing facing = Facing::NORTH;
-    assert(facing.right() == Facing::EAST);
-    
-    facing = Facing::EAST;
-    assert(facing.right() == Facing::SOUTH);
-
-    facing = Facing::SOUTH;
-    assert(facing.right() == Facing::WEST);
-
-    facing = Facing::WEST;
-    assert(facing.right() == Facing::NORTH);
-}
-
 
 int main(int /* argc */, char ** /* argv */)
 {
     testFacingToString();
-    testFacingLeft();
-    testFacingRight();
+    testFacingFromString();
     return 0;
 }

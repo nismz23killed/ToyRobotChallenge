@@ -19,8 +19,6 @@ public:
     int getX() const;
     int getY() const;
 
-    Coordinate next(const Facing & direction) const;
-
     std::string toString() const;
 };
 

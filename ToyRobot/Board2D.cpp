@@ -8,7 +8,7 @@ Board2D::Board2D(unsigned int length, unsigned int height)
 }
 
 
-bool Board2D::isPositionWithinBounds(const Coordinate & coord) const
+bool Board2D::isCoordinateWithinBounds(const Coordinate & coord) const
 {
     return (coord.getX() >= 0
             && coord.getY() >= 0

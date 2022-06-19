@@ -17,7 +17,7 @@ public:
     /*
      * Validate if the give coordinate is within the board's bound
      */
-    virtual bool isPositionWithinBounds(const Coordinate & coord) const override;
+    virtual bool isCoordinateWithinBounds(const Coordinate & coord) const override;
 
     virtual unsigned int getLength() const;
     virtual unsigned int getHeight() const;

@@ -12,7 +12,7 @@ public:
     /*
      * Validate if the give coordinate is within the board's bound
      */
-    virtual bool isPositionWithinBounds(const Coordinate & coord) const = 0;
+    virtual bool isCoordinateWithinBounds(const Coordinate & coord) const = 0;
 
 
 };

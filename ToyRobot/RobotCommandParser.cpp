@@ -1,4 +1,10 @@
-#include "ToyRobotCommandInvoker.h"
+#include "RobotCommandParser.h"
+#include "RobotPosition.h"
+#include "RobotPlaceCommand.h"
+#include "RobotLeftCommand.h"
+#include "RobotRightCommand.h"
+#include "RobotMoveCommand.h"
+#include "RobotReportCommand.h"
 
 #include <regex>
 #include <map>
@@ -7,28 +13,30 @@
 
 using namespace std;
 
-static map<string, function<string (const smatch & match)>> regexCmds;
+static map<string, function<void (const smatch & match)> > regexCmds;
 
-ToyRobotCommandInvoker::ToyRobotCommandInvoker(ToyRobot & toyRobot)
-    : _toyRobot(toyRobot)
+RobotCommandParser::RobotCommandParser(Robot & robot, const Board & board)
+    : _robot(robot)
+    , _board(board)
 {
     registerCommands();
 }
 
-string ToyRobotCommandInvoker::processCommand(string rawCommand)
+bool RobotCommandParser::processCommand(string strCommand)
 {
     for (auto & it: regexCmds) {
         std::regex rgx(it.first, std::regex_constants::icase);
         std::smatch match;
-        if (it.second && std::regex_search(rawCommand, match, rgx)) {
-            return it.second(match);
+        if (it.second && std::regex_search(strCommand, match, rgx)) {
+            it.second(match);
+            return true;
         }
     }
 
-    return string();
+    return false;
 }
 
-void ToyRobotCommandInvoker::registerCommands()
+void RobotCommandParser::registerCommands()
 {
     // PLACE command
     regexCmds.insert(pair(
@@ -39,9 +47,10 @@ void ToyRobotCommandInvoker::registerCommands()
             //match[2..n] are the command parameters
             int x = stoi(match[2]);
             int y = stoi(match[3]);
-            Facing facing = Facing::fromStr(match[4].str().c_str());
-            _toyRobot.place(Coordinate(x,y), facing);
-            return string();
+            Facing facing = FacingFromStr(match[4].str().c_str());
+
+            auto position = RobotPosition(Coordinate(x, y), facing);
+            RobotPlaceCommand(_robot, position).execute(_board);
         }
     ));
 
@@ -49,8 +58,7 @@ void ToyRobotCommandInvoker::registerCommands()
     regexCmds.insert(pair(
         "^\\s*(LEFT)\\s*$",
         [&] (const smatch & match) {
-            _toyRobot.left();
-            return string();
+            RobotLeftCommand(_robot).execute(_board);
         }
     ));
 
@@ -58,8 +66,7 @@ void ToyRobotCommandInvoker::registerCommands()
     regexCmds.insert(pair(
         "^\\s*(RIGHT)\\s*$",
         [&] (const smatch & match) {
-            _toyRobot.right();
-            return string();
+            RobotRightCommand(_robot).execute(_board);
         }
     ));
 
@@ -67,8 +74,7 @@ void ToyRobotCommandInvoker::registerCommands()
     regexCmds.insert(pair(
         "^\\s*(MOVE)\\s*$",
         [&] (const smatch & match) {
-            _toyRobot.move();
-            return string();
+            RobotMoveCommand(_robot).execute(_board);
         }
     ));
 
@@ -76,7 +82,9 @@ void ToyRobotCommandInvoker::registerCommands()
     regexCmds.insert(pair(
         "^\\s*(REPORT)\\s*$",
         [&] (const smatch & match) {
-            return _toyRobot.report();
+            auto command = RobotReportCommand(_robot);
+            command.execute(_board);
+            std::cout << "Output: " << command.getReport() << std::endl;
         }
     ));
 
