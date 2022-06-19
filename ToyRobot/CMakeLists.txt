@@ -14,7 +14,7 @@ set(SOURCE_FILES
 enable_testing()
 add_subdirectory(tests)
 
-add_library(ToyRobot SHARED ${SOURCE_FILES})
+add_library(ToyRobot ${SOURCE_FILES})
 target_include_directories(ToyRobot PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
